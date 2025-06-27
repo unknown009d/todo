@@ -10,50 +10,6 @@ import 'package:todd/presentation/widgets/add_todo_sheet.dart';
 class TodoView extends StatelessWidget {
   const TodoView({super.key});
 
-  // void _showAddTodoBox(BuildContext context) {
-  //   final todoCubit = context.read<TodoCubit>();
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       final textController = TextEditingController();
-  //       return AlertDialog(
-  //         content: TextField(
-  //           controller: textController,
-  //           autofocus: true,
-  //           decoration: const InputDecoration(
-  //             labelText: "Name of Todo",
-  //             border: OutlineInputBorder(),
-  //           ),
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(),
-  //             child: const Text("Cancel"),
-  //           ),
-  //           FilledButton(
-  //             onPressed: () {
-  //               if (textController.text.isEmpty) {
-  //                 ScaffoldMessenger.of(
-  //                   context,
-  //                 ).showSnackBar(
-  //                   SnackBar(
-  //                     content: Text("Doiya koira kicchu likhun!"),
-  //                     action: SnackBarAction(label: "Okay", onPressed: () {}),
-  //                   ),
-  //                 );
-  //               } else {
-  //                 todoCubit.addTodo(textController.text);
-  //               }
-  //               Navigator.of(context).pop();
-  //             },
-  //             child: const Text("Add"),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     final todoCubit = context.read<TodoCubit>();
@@ -65,7 +21,7 @@ class TodoView extends StatelessWidget {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.indigoAccent,
+                color: const Color(0xFF418377),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -73,6 +29,25 @@ class TodoView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 40,
+                            offset: Offset(2, 4),
+                          ),
+                        ],
+                      ),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/icon/icon.png'),
+                        radius: 24,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Text(
                       "WHY ARE YOU HERE?",
                       style: TextStyle(
@@ -120,7 +95,7 @@ class TodoView extends StatelessWidget {
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text("What more info do you want?"),
+                    content: Text("Technically Developed by Druba"),
                   ),
                 );
               },
@@ -138,22 +113,22 @@ class TodoView extends StatelessWidget {
           ),
         ),
         title: Text("Same old todo bull*hit"),
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: const Color(0xFF418377),
         foregroundColor: Colors.white,
         centerTitle: true,
         actions: [
           PopupMenuButton(
+            onSelected: (value) {
+              if (value == 'share') {
+                final todos = context.read<TodoCubit>().state;
+                _shareTodos(context, todos);
+              }
+            },
             itemBuilder: (BuildContext context) {
               return [
                 PopupMenuItem(
+                  value: 'share',
                   child: Text("Share"),
-                  onTap: () {
-                    SharePlus.instance.share(
-                      ShareParams(
-                        text: "Check this out!",
-                      ),
-                    );
-                  },
                 ),
               ];
             },
@@ -222,6 +197,22 @@ class TodoView extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  void _shareTodos(BuildContext context, List<Todo> todos) {
+    final todoText = [
+      'Tasks:',
+      if (todos.isEmpty)
+        'No task'
+      else ...[
+        for (final todo in todos)
+          '- ${todo.text} – ${todo.isCompleted ? '✅' : '⛔'}',
+      ],
+    ].join('\n');
+
+    SharePlus.instance.share(
+      ShareParams(title: "Todo app tasks", text: todoText),
     );
   }
 }

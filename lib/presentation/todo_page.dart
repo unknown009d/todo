@@ -36,7 +36,7 @@ class TodoPage extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      height: 80,
+                      height: 120,
                       width: double.infinity,
                       color: Colors.transparent,
                     ),

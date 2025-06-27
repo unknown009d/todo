@@ -45,7 +45,7 @@ class MainApp extends StatelessWidget {
           backgroundColor: Color.fromARGB(255, 28, 28, 29),
           contentTextStyle: TextStyle(color: Colors.white),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF418377)),
         useMaterial3: true,
       ),
       home: TodoPage(todoRepo: todoRepo),

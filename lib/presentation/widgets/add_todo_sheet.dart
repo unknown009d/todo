@@ -47,7 +47,7 @@ void showAddTodoSheet(BuildContext context) {
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text("Doiya koira kicchu likhun!"),
+                        content: Text("Please enter something!"),
                         showCloseIcon: true,
                       ),
                     );

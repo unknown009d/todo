@@ -1,5 +1,5 @@
 name: todd
-description: "Same old todo bullshit"
+description: "Same old todo bullsh*t"
 publish_to: "none"
 version: 0.1.0
 
@@ -25,6 +25,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icon/
 
 flutter_launcher_icons:
   android: true
