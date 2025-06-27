@@ -9,8 +9,6 @@ This is made using a clean architecture called Domain-Driven Design.
 
 That's it nothing special here.
 
->Download the app:
-<a href='app-profile.apk' download style="display: flex; justify-content: start; align-items: start; gap: 0.2rem; flex-direction: column; margin:1rem 0;">
-    <img src="assets/icon/icon.png" style="border-radius: 50pt; height: 42pt">
-    todd.apk
-</a>
+## 📱 Download app
+
+[![Download](https://img.shields.io/badge/Download-APK-blue)](https://github.com/unknown009d/todo/releases/download/v1.0/app-profile.apk)
