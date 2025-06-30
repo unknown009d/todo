@@ -9,6 +9,9 @@ This is made using a clean architecture called Domain-Driven Design.
 
 That's it nothing special here.
 
+## Screenshots
+![Showcase app](assets/todd.webp)
+
 ## 📱 Download app
 
 [![Download](https://img.shields.io/badge/Download-APK-blue)](https://github.com/unknown009d/todo/releases/download/v1.0/app-profile.apk)
